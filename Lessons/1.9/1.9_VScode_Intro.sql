@@ -1,2 +1,2 @@
-Select distinct job_title_short 
+Select distinct job_country
 from job_posting_fact;
