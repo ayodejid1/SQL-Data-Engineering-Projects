@@ -1,0 +1,1 @@
+Select 42 as answer;
