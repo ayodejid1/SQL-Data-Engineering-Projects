@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240" role="img" aria-label="SQL Data Engineering Projects - DuckDB, MotherDuck, Star Schema, ETL">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .title { font: 700 36px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #f8fafc; opacity: 0; animation: fadeUp 0.8s ease-out 0.2s forwards; }
+    .sub   { font: 400 17px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #94a3b8; opacity: 0; animation: fadeUp 0.8s ease-out 0.6s forwards; }
+    .tag   { font: 600 13px 'Consolas', 'Courier New', monospace; fill: #38bdf8; opacity: 0; animation: fadeUp 0.8s ease-out 1s forwards; }
+    .line  { stroke-dasharray: 340; stroke-dashoffset: 340; animation: draw 1.2s ease-out 0.4s forwards; }
+    .node  { opacity: 0; animation: pop 0.5s ease-out forwards; }
+    .n1 { animation-delay: 0.8s; } .n2 { animation-delay: 1.2s; } .n3 { animation-delay: 1.6s; }
+    .flow  { stroke-dasharray: 6 6; animation: dash 1s linear infinite; opacity: 0; }
+    .f1 { animation: dash 1s linear infinite, pop 0.4s ease-out 1.1s forwards; }
+    .f2 { animation: dash 1s linear infinite, pop 0.4s ease-out 1.5s forwards; }
+    .lbl { font: 600 12px 'Segoe UI', Helvetica, Arial, sans-serif; fill: #cbd5e1; text-anchor: middle; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes pop { to { opacity: 1; } }
+    @keyframes dash { to { stroke-dashoffset: -12; } }
+  </style>
+
+  <rect width="900" height="240" rx="16" fill="url(#bg)"/>
+
+  <text x="48" y="92" class="title">SQL Data Engineering Projects</text>
+  <line x1="48" y1="112" x2="388" y2="112" stroke="url(#accent)" stroke-width="3" stroke-linecap="round" class="line"/>
+  <text x="48" y="146" class="sub">Analytics · Data Warehousing · ETL with DuckDB &amp; MotherDuck</text>
+  <text x="48" y="186" class="tag">raw data → star schema → insights</text>
+
+  <g transform="translate(600 70)">
+    <line class="flow f1" x1="52" y1="50" x2="98" y2="50" stroke="#38bdf8" stroke-width="3"/>
+    <line class="flow f2" x1="162" y1="50" x2="208" y2="50" stroke="#a78bfa" stroke-width="3"/>
+
+    <g class="node n1">
+      <ellipse cx="26" cy="28" rx="26" ry="9" fill="#334155" stroke="#38bdf8" stroke-width="2"/>
+      <path d="M0 28 v44 a26 9 0 0 0 52 0 v-44" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+      <ellipse cx="26" cy="28" rx="26" ry="9" fill="#334155" stroke="#38bdf8" stroke-width="2"/>
+      <text x="26" y="106" class="lbl">Data</text>
+    </g>
+    <g class="node n2">
+      <rect x="100" y="22" width="60" height="56" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+      <text x="130" y="56" class="lbl" style="fill:#60a5fa;font-size:15px">SQL</text>
+      <text x="130" y="106" class="lbl">Transform</text>
+    </g>
+    <g class="node n3">
+      <rect x="212" y="58" width="12" height="20" rx="2" fill="#38bdf8"/>
+      <rect x="228" y="44" width="12" height="34" rx="2" fill="#60a5fa"/>
+      <rect x="244" y="30" width="12" height="48" rx="2" fill="#a78bfa"/>
+      <text x="234" y="106" class="lbl">Insights</text>
+    </g>
+  </g>
+</svg>

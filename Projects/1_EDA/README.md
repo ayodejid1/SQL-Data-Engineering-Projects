@@ -46,7 +46,7 @@ The analysis is split into three focused queries: the most **in-demand** skills,
 
 | Query | What it shows |
 |---|---|
-| 📈 [`01_top_demanded_skills.sql`](01_top_demanded_skills.sql) | Demand analysis with multi-table joins |
+| 📈 [`01_top_demanded_skills.sql`](01_top_demanded_skills.sql#L9-L22) | Demand analysis with multi-table joins |
 | 💰 [`02_top_paying_skills.sql`](02_top_paying_skills.sql#L10-L28) | Salary analysis with median aggregation and `HAVING` filters |
 | ⚖️ [`03_optimal_skills.sql`](03_optimal_skills.sql#L10-L30) | Combined demand/salary optimisation with a log-weighted score |
 
@@ -117,14 +117,28 @@ The warehouse uses a **star schema**: a central fact table of job postings, dime
 
 ### 📈 1. Top Demanded Skills
 
-> **Question:** Which skills appear most often in data engineer job postings?
+> **Question:** Which skills appear most often in remote US data engineer job postings?
 >
-> 📄 **Query:** [`01_top_demanded_skills.sql`](01_top_demanded_skills.sql)
+> 📄 **Query:** [`01_top_demanded_skills.sql`](01_top_demanded_skills.sql#L9-L22)
 
 **Approach**
 - Join job postings to their skills through the `skills_job_dim` bridge table
-- Filter to data engineer roles
-- Count postings per skill and rank by demand
+- Filter to remote data engineer roles in the United States
+- Count postings per skill and return the top 10
+
+```mermaid
+xychart-beta
+    title "Top 10 Most In-Demand Skills (Remote US)"
+    x-axis [sql, python, aws, azure, spark, snowflake, databricks, java, airflow, kafka]
+    y-axis "Job Postings" 0 --> 9000
+    bar [8665, 8118, 5269, 4419, 3766, 2974, 2650, 2507, 2110, 2018]
+```
+
+**Key findings**
+- 🧠 **SQL (8,665)** and **Python (8,118)** are by far the most requested skills, about 1.6x the next closest.
+- ☁️ **Cloud platforms** come next: AWS (5,269) and Azure (4,419).
+- 🔥 **Spark (3,766)** completes the top 5, showing the importance of big data processing.
+- 🧱 **Modern data platforms and pipeline tools** (Snowflake, Databricks, Airflow, Kafka) are all in strong demand.
 
 **Why it matters:** Demand shows which skills employers expect as standard. These are the skills that open the most doors.
 
@@ -298,7 +312,7 @@ xychart-beta
 
 - Salaries are **associated** with skills, not caused by them. Senior roles tend to list more advanced tools.
 - Each posting counts toward every skill it lists, so unrelated skills can share the same median.
-- Demand counts include only postings with a listed salary, so they show relative demand, not total market size.
+- In queries 02 and 03, demand counts include only postings with a listed salary, so they show relative demand, not total market size.
 - Posted salaries cluster at round numbers (e.g. $150,000), which creates ties in the rankings.
 
 </details>
@@ -310,7 +324,7 @@ xychart-beta
 ### Query Design
 | Skill | Where it's used |
 |---|---|
-| **Multi-table joins:** `INNER JOIN` across `job_postings_fact`, `skills_job_dim` and `skills_dim` | [01](01_top_demanded_skills.sql) · [02](02_top_paying_skills.sql#L10-L28) · [03](03_optimal_skills.sql#L10-L30) |
+| **Multi-table joins:** `INNER JOIN` across `job_postings_fact`, `skills_job_dim` and `skills_dim` | [01](01_top_demanded_skills.sql#L9-L22) · [02](02_top_paying_skills.sql#L10-L28) · [03](03_optimal_skills.sql#L10-L30) |
 | **Aggregations:** `COUNT()`, `MEDIAN()`, `ROUND()` | [02](02_top_paying_skills.sql#L10-L28) · [03](03_optimal_skills.sql#L10-L30) |
 | **Filtering:** multi-condition `WHERE` on job title, country, remote flag and salary | [02](02_top_paying_skills.sql#L17-L20) · [03](03_optimal_skills.sql#L19-L23) |
 | **Sorting & limiting:** `ORDER BY ... DESC` with `LIMIT` for top-N analysis | All queries |

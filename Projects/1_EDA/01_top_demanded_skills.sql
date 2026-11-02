@@ -2,8 +2,8 @@
 Question: What are the most in-demand skills for data engineers?
 - Join job postings to inner join table similar to query 2
 - Identify the top 10 in-demand skills for data engineers
-- Focus on remote job postings
-- Why? Retrieves the top 10 skills with the highest demand in the remote job market,
+- Focus on remote job postings in the United States
+- Why? Retrieves the top 10 skills with the highest demand in the remote US job market,
     providing insights into the most valuable skills for data engineers seeking remote work
 */
 SELECT
@@ -25,16 +25,16 @@ limit 10;
 
 /*
 Here's the breakdown of the most demanded skills for data engineers:
-SQL and Python are by far the most in-demand skills, with around 29,000 job postings each - nearly double the next closest skill.
-Cloud platforms round out the top skills, with AWS leading at ~18,000 postings, followed by Azure at ~14,000.
-Apache Spark completes the top 5 with nearly 13,000 postings, highlighting the importance of big data processing skills.
+SQL (8,665 postings) and Python (8,118) are by far the most in-demand skills, about 1.6x the next closest skill.
+Cloud platforms come next, with AWS leading at 5,269 postings, followed by Azure at 4,419.
+Apache Spark completes the top 5 with 3,766 postings, highlighting the importance of big data processing skills.
 
 Key takeaways:
 - SQL and Python remain the foundational skills for data engineers
 - Cloud platforms (AWS, Azure) are critical for modern data engineering
 - Big data tools like Spark continue to be highly valued
-- Data pipeline tools (Airflow, Snowflake, Databricks) show growing demand
-- Java and GCP round out the top 10 most requested skills
+- Modern data platforms and pipeline tools (Snowflake, Databricks, Airflow) are in strong demand
+- Java and Kafka round out the top 10 most requested skills
 
 ┌────────────┬──────────────┐
 │   skills   │ demand_count │
